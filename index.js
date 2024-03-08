@@ -3,13 +3,11 @@ import express from 'express'
 const app = express()
 
 app.get('/', (req, res) => {
-  res.send('Hello World')
+  res.send('hello')
 })
 
-app.listen(4444, (err) => {
-  if (err) {
-    return console.log(err)
-  }
+const port = process.env.PORT || 3000
 
-  console.log('Server OK')
+app.listen(port, () => {
+  console.log(`App listening on port: ${port}`)
 })
