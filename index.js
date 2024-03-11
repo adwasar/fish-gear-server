@@ -1,13 +1,21 @@
 import express from 'express'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
 
 const app = express()
+dotenv.config()
 
-app.get('/', (req, res) => {
-  res.send('hello')
-})
+// Constants
+const PORT = process.env.PORT || 3001
+const DB_USER = process.env.DB_USER
+const DB_PASSWORD = process.env.DB_PASSWORD
 
-const port = process.env.PORT || 3000
+async function start() {}
+try {
+  await mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.c1phqti.mongodb.net/`)
 
-app.listen(port, () => {
-  console.log(`App listening on port: ${port}`)
-})
+  app.listen(PORT, () => console.log(`Server started on port: ${PORT}`))
+} catch (error) {
+  console.log(error)
+}
+start()
