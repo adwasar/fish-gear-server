@@ -1,6 +1,9 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import cors from 'cors'
+
+import authRoute from './routes/auth.js'
 
 const app = express()
 dotenv.config()
@@ -9,6 +12,13 @@ dotenv.config()
 const PORT = process.env.PORT || 3001
 const DB_USER = process.env.DB_USER
 const DB_PASSWORD = process.env.DB_PASSWORD
+
+// Middleware
+app.use(cors())
+app.use(express.json())
+
+// Routes
+app.use('/api/auth', authRoute)
 
 async function start() {}
 try {
